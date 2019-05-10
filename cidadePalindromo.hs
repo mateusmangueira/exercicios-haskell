@@ -1,16 +1,12 @@
-ehPalindromo :: String -> Bool
-ehPalindromo palavra = palavra == reverse palavra
-
-criaPalindromo :: String -> IO()
-criaPalindromo palavra = do
-     let saida = palavra ++ reverse palavra
-     print(saida)
-
+reverso :: String -> String
+reverso [] = []
+reverso (x:xs) = (reverso xs) ++ [x]
+ 
+criaPalindromo :: String -> String
+criaPalindromo entrada = entrada ++ (reverso entrada)
+ 
 main :: IO()
 main = do
     entrada <- getLine
-    if(ehPalindromo entrada) then print(entrada) else criaPalindromo entrada
-       
-   
-   
-    
+    let saida = criaPalindromo entrada
+    putStrLn saida
